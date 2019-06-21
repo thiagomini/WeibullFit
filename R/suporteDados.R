@@ -163,6 +163,6 @@ rtrunc <- function(n, spec, a = -Inf, b = Inf, ...) {
 }
 
 dirCreate <- function(dir_str) {
-	print(dir_str)
+	# print(dir_str)
 	dir.create(file.path(getwd(), dir_str), showWarnings = TRUE, recursive = TRUE)
 }

@@ -39,7 +39,7 @@
 #'
 #' @export
 weibullFit = function(dataFrame, primaryGroup="parcela", secondaryGroup="idadearred", restrValue, pValue="dap", leftTrunc=5, folder = NA, limit=100000, selectedFunctions = NULL, amp=2, pmaxIT=20, verbose=FALSE) {
-	options(warn=-1)
+
 	##Extração dos dados específicos
 	newDF = data.frame(extractData(dataFrame=dataFrame, restrVal=restrValue, primaryGroup=primaryGroup, secondaryGroup=secondaryGroup, pValue = pValue))
 	dataFrameName=as.character(quote(newDF))
@@ -72,9 +72,8 @@ weibullFit = function(dataFrame, primaryGroup="parcela", secondaryGroup="idadear
 	#Verificando o tipo da variavel do Primary Group:
 	classePrimaryGroup <- class(dfPrimaryKeys[1,1])
 
-	if(verbose) cat(paste("\n",primaryGroup,"\n"))
-	print(dfPrimaryKeys$primaryGroup)
-
+	if(verbose)
+	  cat(paste("\n",primaryGroup,"\n"))
 
 	if(verbose) cat(paste("\nGenerating result for ", nrow(dfPrimaryKeys)," instances of ", primaryGroup, sep=""))
 
@@ -244,7 +243,8 @@ weibullFit = function(dataFrame, primaryGroup="parcela", secondaryGroup="idadear
 	if (nrow(dfParcela)>0){
 		dfParcela = sqldf("SELECT * from dfParcela order by KS ASC")
 
-		print(xtable(dfParcela,digits=rep(4, dim(dfParcela)[2]+1), include.rownames=FALSE), type="html", file=paste(folder,"Parcela_", primaryGroup, "_", gsub(".", "", restrValue, fixed = TRUE), "_", "_6-Resumo Weibull 2p e 3p.html", sep=""), html.table.attributes=list("border='1' bordercolor=black cellpadding='0' cellspacing='0'"))
+		if(verbose)
+		  print(xtable(dfParcela,digits=rep(4, dim(dfParcela)[2]+1), include.rownames=FALSE), type="html", file=paste(folder,"Parcela_", primaryGroup, "_", gsub(".", "", restrValue, fixed = TRUE), "_", "_6-Resumo Weibull 2p e 3p.html", sep=""), html.table.attributes=list("border='1' bordercolor=black cellpadding='0' cellspacing='0'"))
 
 		if (nrow(dfWeibulls2p) > 0) {
 			dfTemp = rbind(dfTemp, sqldf("SELECT * from dfWeibulls2p ORDER by KS ASC LIMIT 1"))
@@ -262,7 +262,7 @@ weibullFit = function(dataFrame, primaryGroup="parcela", secondaryGroup="idadear
 
 	tryCatch({
 	  if(verbose)
-			cat("\n\n\nGravando resultados preliminares")
+			cat("\n\n\nSaving Results")
 	  if(is.na(folder)) {
 	    write.table(dfAll, file=tempdir(), sep=";", dec=",",row.names=FALSE)
 	    write.table(dfBest, file=tempdir(), sep=";", dec=",",row.names=FALSE)
@@ -272,7 +272,7 @@ weibullFit = function(dataFrame, primaryGroup="parcela", secondaryGroup="idadear
 	   }
 
 	}, error = function(err) {
-	  print(paste("Erro:  ",err))
+	  print(paste("Error:  ",err))
 	})
 
 	tryCatch({
@@ -284,10 +284,9 @@ weibullFit = function(dataFrame, primaryGroup="parcela", secondaryGroup="idadear
 
 
 	}, error = function(err) {
-	  print(paste("Erro:  ",err))
+	  print(paste("Error:  ",err))
 	})
 
-	options(warn=0)
 	}
 
 	# if(updateDB) {

@@ -7,10 +7,7 @@ Authors@R: c(
             role = c("aut")),
           person("Thiago", "Martins", email = "thiago_valentim1@hotmail.com", 
             role = c("aut", "cre"))) 
-Description: Provides a single function to fit data of an input data frame
-    into one of the selected Weibull functions (w2, w3 and it's truncated versions), calculating
-    the scale, location and shape parameters accordingly. The resulting plots and files are saved into the
-    'folder' parameter provided by the user. reference: John C. Nash, Ravi Varadhan (2011) <10.18637/jss.v043.i09>
+Description: Provides a single function to fit data of an input data frame into one of the selected Weibull functions (w2, w3 and it's truncated versions), calculating the scale, location and shape parameters accordingly. The resulting plots and files are saved into the 'folder' parameter provided by the user. References: a) John C. Nash, Ravi Varadhan (2011). "Unifying Optimization Algorithms to Aid Software System Users: optimx for R" <doi:10.18637/jss.v043.i09>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

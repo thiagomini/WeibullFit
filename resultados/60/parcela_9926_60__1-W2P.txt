@@ -1,0 +1,3 @@
+<environment: 0x000001f98281adc0>
+attr(,"class")
+[1] "weibull"

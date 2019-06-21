@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1561035781484.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2739147512",
+    "id" : "980E8B0",
+    "lastKnownWriteTime" : 1561143839,
+    "last_content_update" : 1561143839626,
+    "path" : "~/WeibullFit/R/weibullFit.R",
+    "project_path" : "R/weibullFit.R",
+    "properties" : {
+        "cursorPosition" : "46,21",
+        "scrollLine" : "32",
+        "source_window_id" : ""
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

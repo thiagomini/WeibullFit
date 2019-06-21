@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+R/resultados
+dadosNovos.RData
+resultados/
+^cran-comments\.md$

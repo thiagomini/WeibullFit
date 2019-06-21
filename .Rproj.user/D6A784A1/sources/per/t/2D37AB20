@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1561143501914.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1579184743",
+    "id" : "2D37AB20",
+    "lastKnownWriteTime" : 1561143509,
+    "last_content_update" : 1561143509100,
+    "path" : "~/WeibullFit/R/suporteDados.R",
+    "project_path" : "R/suporteDados.R",
+    "properties" : {
+        "cursorPosition" : "165,3",
+        "scrollLine" : "140"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -7,10 +7,10 @@
 #' @import e1071
 #' @importFrom R.methodsS3 setGenericS3
 weibull3 = function(dados, amplitude = 2, te = NA, td = NA, maxIT=20, verbose) {
-  options(warn=-1)
+
   options(scipen=10)
-  if (!is.numeric(dados) || !all(is.finite(dados)))	stop("Dados invalidos")
-  if (!is.numeric(amplitude) || !all(is.finite(amplitude)))	stop("Amplitude invalida")
+  if (!is.numeric(dados) || !all(is.finite(dados)))	stop("Invalid Data")
+  if (!is.numeric(amplitude) || !all(is.finite(amplitude)))	stop("Invalid Amplitude")
 
   if (is.numeric(te) && !is.numeric(td)) {
     nome = "Weibull 3P trunc. a esquerda (forma, escala, locacao)"
@@ -25,7 +25,7 @@ weibull3 = function(dados, amplitude = 2, te = NA, td = NA, maxIT=20, verbose) {
   resultadoClasses = defineClasses(dados, amplitude)
 
   weibull3 = list(te = te, td = td, nome = nome,amplitude = amplitude, dados = dados, estimado = NA, observado = NA, densidade = NA, centro = resultadoClasses$centro, classe = resultadoClasses$classe, forma = NA, escala = NA, locacao = NA, metodo = NA, parametros = NA, cdfResultado = NA, freqAcumuladaEstimada = NA, freqAcumuladaObservada = NA, resultadoOptimx = NA, chutesIniciais = NA, iteracoes = NA,
-                  get = function(x) weibull3[[x]], set = function(x, value) weibull3[[x]] <<- value, maxIT=maxIT)
+                  get = function(x) weibull3[[x]], set = function(x, value) weibull3[[x]] <- value, maxIT=maxIT)
 
   weibull3$cdf = function(dados, forma, escala, locacao) {
 
@@ -64,7 +64,7 @@ weibull3 = function(dados, amplitude = 2, te = NA, td = NA, maxIT=20, verbose) {
       }
       return(fpdf)
     } else {
-      stop("Informe os valores corretos dos parametros da funcao")
+      stop("Enter the correct values for the function's parameters")
     }
   }
 
@@ -104,13 +104,14 @@ weibull3 = function(dados, amplitude = 2, te = NA, td = NA, maxIT=20, verbose) {
   weibull3 <- list2env(weibull3)
   class(weibull3) = c("weibull3","weibull")
 
-  cat(paste("\n\nComputando ", weibull3$nome, "..."))
+
+  # cat(paste("\n\nComputando ", weibull3$nome, "..."))
 
   weibull3$observado = obtemObservado.weibull3(weibull3)
 
   weibull3 = estimaParametros.weibull3(weibull3)
 
-  options(warn=0)
+
   return(weibull3)
 }
 
@@ -249,8 +250,8 @@ estimaParametros.weibull3 <- function (obj, significancia = 0.05, considerar=1) 
   while (TRUE) {
 	if (finalizado && nrow(chutes)==1) {
 		chute = list(forma = chutes[1,1], escala = chutes[1,2], locacao = chutes[1,3])
-		cat(paste("\n\nPega o menor KS apos 20 iteracoes, \ncaso nao tenha encontrado KS <= 0.10:\n"))
-		##print(chutes)
+		# cat(paste("\n\nPega o menor KS apos 20 iteracoes, \ncaso nao tenha encontrado KS <= 0.10:\n"))
+		# print(chutes)
 	} else if (iteracao == 1) {
 		mu = mean(log(obj$dados))
 		sigma2 = var(log(obj$dados))
@@ -288,7 +289,7 @@ estimaParametros.weibull3 <- function (obj, significancia = 0.05, considerar=1) 
 
 
 		if (nrow(dfParametros) == 0) {
-			cat(paste("\nNao encontrou parametros, iteracao:", iteracao))
+			# cat(paste("\nNao encontrou parametros, iteracao:", iteracao))
 		} else {
 			obj$set("forma", dfParametros$forma[considerar])
 			obj$set("escala", dfParametros$escala[considerar])
@@ -315,11 +316,11 @@ estimaParametros.weibull3 <- function (obj, significancia = 0.05, considerar=1) 
 			obj$freqAcumuladaEstimada <- obj$cdf(obj$classe[,2], forma=obj$get("forma"), escala=obj$get("escala"), locacao=obj$get("locacao"))
 
 		}
-		cat(paste("\n---------------------------------------------------------------------------------------------------------------------------------------------------"))
-		cat(paste("\nIteracao: ", iteracao))
-		cat(paste("\n---------------------------------------------------------------------------------------------------------------------------------------------------"))
-		cat(paste( "\n"))
-		print(dfParametros[considerar,])
+		# cat(paste("\n---------------------------------------------------------------------------------------------------------------------------------------------------"))
+		# cat(paste("\nIteracao: ", iteracao))
+		# cat(paste("\n---------------------------------------------------------------------------------------------------------------------------------------------------"))
+		# cat(paste( "\n"))
+		# print(dfParametros[considerar,])
 
 		if (nrow(dfParametros)>0)  {
 			# Termina caso encontre um KS menor que 0.10
@@ -344,7 +345,7 @@ estimaParametros.weibull3 <- function (obj, significancia = 0.05, considerar=1) 
 			remove(dfParametros)
 			break;
 		  } else {
-			cat(paste("\n\nNao convergiu!"))
+			# cat(paste("\n\nNao convergiu!"))
 		    obj$iteracoes = -999999
 			break;
 		  }
@@ -391,7 +392,7 @@ testeKS.weibull3 = function(obj, forma, escala, locacao) {
 setGenericS3("testeKS")
 
 parametros.weibull3 = function(obj) {
-  if (is.null(obj$parametros)) {stop("E necessario estimar os parametros e sua aderencia.\n Utilize a funcao avaliaAderencia.")}
+  if (is.null(obj$parametros)) {stop("It is necessary to estimate the parameters and its adherences.\n Use the function avaliaAderencia")}
   p = as.list(c(nome = obj$nome, obj$parametros[1,]))
   return(p)
 }
@@ -499,7 +500,7 @@ setGenericS3("obtemTeorica")
 
 plot.weibull3 <- function(obj, prob=FALSE, main = "", acumulado=FALSE, teorico = FALSE) {
 
-  cat(paste("\nPlotando ", obj$nome))
+  # cat(paste("\nPlotando ", obj$nome))
 
   if (!all(is.na(obj$estimado)) & !all(is.na(obj$observado))) {
     te = obj$te
@@ -556,7 +557,7 @@ plot.weibull3 <- function(obj, prob=FALSE, main = "", acumulado=FALSE, teorico =
       }
     }
   } else {
-    cat("Nao foi possivel realizar a estimativa")
+    # cat("Nao foi possivel realizar a estimativa")
   }
 }
 setGenericS3("plot")

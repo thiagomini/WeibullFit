@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1561143798456.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2188976078",
+    "id" : "BAF725A",
+    "lastKnownWriteTime" : 1560030477,
+    "last_content_update" : 1560030477,
+    "path" : "~/WeibullFit/R/support.R",
+    "project_path" : "R/support.R",
+    "properties" : {
+        "cursorPosition" : "2,29",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
